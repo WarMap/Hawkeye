@@ -19,14 +19,14 @@ typedef struct {
     int depth;
 } mpCallRecord;
 
-extern void mpCallTraceStart();
-extern void mpCallTraceStop();
+extern void mpCallTraceStart(void);
+extern void mpCallTraceStop(void);
 
 extern void mpCallConfigMinTime(uint64_t us); //default 1000
 extern void mpCallConfigMaxDepth(int depth);  //default 3
 
 extern mpCallRecord *mpGetCallRecords(int *num);
-extern void mpClearCallRecords();
+extern void mpClearCallRecords(void);
 
 
 #endif /* MPCallTraceCore_h */

@@ -26,17 +26,25 @@
 #include <dispatch/dispatch.h>
 #include <pthread.h>
 
-static bool _call_record_enabled = true;
-static uint64_t _min_time_cost = 1000; //us
-static int _max_call_depth = 3;
-static pthread_key_t _thread_key;
+static bool _call_record_enabled = true;        //是否开启记录调用栈
+static uint64_t _min_time_cost = 1000; //us     //要记录的最小耗时
+static int _max_call_depth = 3;                 //要记录的最大调用栈深度
+static pthread_key_t _thread_key;               //存取绑定在线程上数据的key
 __unused static id (*orig_objc_msgSend)(id, SEL, ...);
+
+
+static inline uint64_t getTimestamp() {
+    struct timeval now;
+    gettimeofday(&now, NULL);
+    return (now.tv_sec % 100) * 1000000 + now.tv_usec;
+}
+
 
 static mpCallRecord *_mpCallRecords;
 //static int otp_record_num;
 //static int otp_record_alloc;
-static int _mpRecordNum;
-static int _mpRecordAlloc;
+static int _mpRecordNum;                        //当前记录的调用数
+static int _mpRecordAlloc;                      //为记录调用申请的空间
 
 typedef struct {
     id self; //通过 object_getClass 能够得到 Class 再通过 NSStringFromClass 能够得到类名
@@ -87,9 +95,7 @@ static inline void push_call_record(id _self, Class _cls, SEL _cmd, uintptr_t lr
         newRecord->cmd = _cmd;
         newRecord->lr = lr;
         if (cs->is_main_thread && _call_record_enabled) {
-            struct timeval now;
-            gettimeofday(&now, NULL);
-            newRecord->time = (now.tv_sec % 100) * 1000000 + now.tv_usec;
+            newRecord->time = getTimestamp();
         }
     }
 }
@@ -101,9 +107,7 @@ static inline uintptr_t pop_call_record() {
     thread_call_record *pRecord = &cs->stack[nextIndex];
     
     if (cs->is_main_thread && _call_record_enabled) {
-        struct timeval now;
-        gettimeofday(&now, NULL);
-        uint64_t time = (now.tv_sec % 100) * 1000000 + now.tv_usec;
+        uint64_t time = getTimestamp();
         if (time < pRecord->time) {
             time += 100 * 1000000;
         }
@@ -249,7 +253,9 @@ void mpClearCallRecords() {
 
 #else
 
-void mpCallTraceStart() {}
+void mpCallTraceStart() {
+    printf("---仅对arm64位架构设备生效----");
+}
 void mpCallTraceStop() {}
 void mpCallConfigMinTime(uint64_t us) {
 }

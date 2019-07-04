@@ -11,8 +11,8 @@
 		EE6C0CF222CCD9DD00C651AF /* test.h in Headers */ = {isa = PBXBuildFile; fileRef = EE6C0CF022CCD9DD00C651AF /* test.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EE6C0CF322CCD9DD00C651AF /* test.m in Sources */ = {isa = PBXBuildFile; fileRef = EE6C0CF122CCD9DD00C651AF /* test.m */; };
 		EE6C0CFC22CCEC7D00C651AF /* fishhook.c in Sources */ = {isa = PBXBuildFile; fileRef = EE6C0CFA22CCEC7D00C651AF /* fishhook.c */; };
-		EE6C0CFD22CCEC7D00C651AF /* fishhook.h in Headers */ = {isa = PBXBuildFile; fileRef = EE6C0CFB22CCEC7D00C651AF /* fishhook.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EE6C0D0122CCED5600C651AF /* MPCallTraceCore.h in Headers */ = {isa = PBXBuildFile; fileRef = EE6C0CFF22CCED5600C651AF /* MPCallTraceCore.h */; };
+		EE6C0CFD22CCEC7D00C651AF /* fishhook.h in Headers */ = {isa = PBXBuildFile; fileRef = EE6C0CFB22CCEC7D00C651AF /* fishhook.h */; };
+		EE6C0D0122CCED5600C651AF /* MPCallTraceCore.h in Headers */ = {isa = PBXBuildFile; fileRef = EE6C0CFF22CCED5600C651AF /* MPCallTraceCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EE6C0D0222CCED5600C651AF /* MPCallTraceCore.c in Sources */ = {isa = PBXBuildFile; fileRef = EE6C0D0022CCED5600C651AF /* MPCallTraceCore.c */; };
 /* End PBXBuildFile section */
 
@@ -93,8 +93,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EE6C0D0122CCED5600C651AF /* MPCallTraceCore.h in Headers */,
 				EE6C0CF222CCD9DD00C651AF /* test.h in Headers */,
+				EE6C0D0122CCED5600C651AF /* MPCallTraceCore.h in Headers */,
 				EE6C0CB522CB8FA300C651AF /* Hawkeye.h in Headers */,
 				EE6C0CFD22CCEC7D00C651AF /* fishhook.h in Headers */,
 			);

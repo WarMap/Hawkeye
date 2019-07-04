@@ -14,7 +14,5 @@ FOUNDATION_EXPORT double HawkeyeVersionNumber;
 //! Project version string for Hawkeye.
 FOUNDATION_EXPORT const unsigned char HawkeyeVersionString[];
 
-// In this header, you should import all the public headers of your framework using statements like #import <Hawkeye/PublicHeader.h>
-#define FISHHOOK_EXPORT 22
-#import <Hawkeye/test.h>
-#import <Hawkeye/fishhook.h>
+
+#import <Hawkeye/MPCallTraceCore.h>
